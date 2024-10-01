@@ -156,7 +156,7 @@ class CommunityPage extends StatelessWidget {
           backgroundColor: const Color(0xFF075E54),
           leadingWidth: 90,
           leading: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               IconButton(
                 icon: const Icon(
@@ -186,7 +186,7 @@ class CommunityPage extends StatelessWidget {
             ),
           ),
           flexibleSpace: Padding(
-            padding: const EdgeInsets.only(top: 5.0),
+            padding: const EdgeInsets.only(top: 50.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -221,8 +221,7 @@ class CommunityPage extends StatelessWidget {
             ),
           ),
         ),
-        body: SingleChildScrollView(
-            child: Column(
+        body: Column(
           children: [
             Column(
               children: [
@@ -242,7 +241,7 @@ class CommunityPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Container(
-                            width: 400,
+                            width: 320,
                             child: Text(
                                 softWrap: true,
                                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"),
@@ -283,14 +282,14 @@ class CommunityPage extends StatelessWidget {
                               children: [
                                 Image.asset("images/a.jpg"),
                                 Container(
-                                  width: 400,
+                                  width: 320,
                                   child: Text(
                                       softWrap: true,
                                       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"),
                                 ),
                                 Container(
                                   padding:
-                                      const EdgeInsets.only(left: 10, top: 10),
+                                  const EdgeInsets.only(left: 10, top: 10),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
@@ -324,10 +323,10 @@ class CommunityPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Container(
-                            width: 400,
+                            width: 320,
                             child: Text(
                                 softWrap: true,
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"),
+                                "Lorem Ipsum is simply dummy standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries"),
                           ),
                           Container(
                             padding: const EdgeInsets.only(left: 10, top: 10),
@@ -347,9 +346,36 @@ class CommunityPage extends StatelessWidget {
                   ],
                 ),
               ],
-            )
+            ),
+            Container(
+              height: 60,
+              color: Colors.white, // White color for the container
+              child: Center(
+                child: Container(
+                  margin: EdgeInsets.only(left: 40,right: 40,top: 8,bottom: 8),
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      style: TextStyle(fontSize: 14, color: Colors.black), // Default text style
+                      children: [
+                        TextSpan(
+                          text: 'You can reply to announcements, but only ',
+                        ),
+                        TextSpan(
+                          text: 'community admins ',
+                          style: TextStyle(color: Colors.green.shade400), // Change this color as needed
+                        ),
+                        TextSpan(
+                          text: 'can send them.',
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
-        )));
+        ));
   }
 }
 
@@ -401,6 +427,7 @@ class FirstCommunityPage extends StatelessWidget {
                     style: TextStyle(color: Colors.white),
                   ),
                 ))),
+
           ],
         ),
       ),

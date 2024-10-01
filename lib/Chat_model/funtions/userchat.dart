@@ -30,10 +30,11 @@ class _UserChatState extends State<UserChat> {
         backgroundColor: const Color(0xFF075E54),
         leadingWidth: 90,
         leading: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             InkWell(
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   IconButton(
@@ -57,7 +58,7 @@ class _UserChatState extends State<UserChat> {
         ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               widget.chatModel.name,
@@ -70,7 +71,7 @@ class _UserChatState extends State<UserChat> {
           ],
         ),
         flexibleSpace: Padding(
-          padding: const EdgeInsets.only(top: 5.0),
+          padding: const EdgeInsets.only(top: 50.0),
           child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,

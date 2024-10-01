@@ -21,7 +21,7 @@ class _StatusViewerState extends State<StatusViewer> {
     // Start the progress timer
     timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
       setState(() {
-        progressValue += 0.05;
+        progressValue += 0.01;
         if (progressValue >= 1.0) {
           timer.cancel();
           Navigator.pop(context); // Automatically close when progress is done
@@ -32,7 +32,7 @@ class _StatusViewerState extends State<StatusViewer> {
 
   @override
   void dispose() {
-    timer.cancel();
+
     super.dispose();
   }
 
@@ -44,28 +44,33 @@ class _StatusViewerState extends State<StatusViewer> {
         children: [
           Center(
             child: Image.asset(
-              widget.status.avatar,
+              widget.status.status,
               fit: BoxFit.cover,
               height: double.infinity,
               width: double.infinity,
             ),
           ),
           Positioned(
-            top: 50,
+            top: 30,
             left: 10,
             right: 10,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Progress Bar
                 LinearProgressIndicator(
                   value: progressValue,
-                  backgroundColor: Colors.grey,
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
                 ),
                 SizedBox(height: 10),
-                // User Info (Name and Time)
                 Row(
                   children: [
+                    IconButton(
+                      icon: Icon(Icons.arrow_back, color: Colors.white),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
                     CircleAvatar(
                       backgroundImage: AssetImage(widget.status.avatar),
                       radius: 25,
@@ -84,12 +89,48 @@ class _StatusViewerState extends State<StatusViewer> {
                         Text(
                           widget.status.time,
                           style: TextStyle(color: Colors.white),
-                        ),
+                         ),
                       ],
                     ),
                   ],
                 ),
+                SizedBox(height: 20),
               ],
+            ),
+          ),
+          // Back Button
+
+          // Reply Section
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              color: Colors.black54,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        hintText: "Type a reply...",
+                        hintStyle: TextStyle(color: Colors.grey),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide.none,
+                        ),
+                        filled: true,
+                        fillColor: Colors.black,
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.send, color: Colors.green),
+                    onPressed: (){},
+                  ),
+                ],
+              ),
             ),
           ),
         ],
