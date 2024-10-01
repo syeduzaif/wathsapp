@@ -14,7 +14,6 @@ class UserChat extends StatefulWidget {
 
 class _UserChatState extends State<UserChat> {
   final ImagePicker imagePicker = ImagePicker();
-  // adding commit
 
   Future<void> getImage() async {
     final pickedImage = await imagePicker.pickImage(source: ImageSource.camera);
@@ -49,8 +48,7 @@ class _UserChatState extends State<UserChat> {
                   CircleAvatar(
                     radius: 20,
                     backgroundColor: Colors.grey,
-                    backgroundImage:
-                        AssetImage(widget.chatModel.avatar), // Use correct data
+                    backgroundImage: AssetImage(widget.chatModel.avatar),
                   ),
                 ],
               ),
@@ -161,12 +159,11 @@ class _UserChatState extends State<UserChat> {
                               Padding(
                                 padding: const EdgeInsets.all(5.0),
                                 child: const FaIcon(
-
                                   FontAwesomeIcons
                                       .checkDouble, // Correct usage of FaIcon
                                   size: 12.0, // You can adjust the size
-                                  color:
-                                      Colors.blue, // You can customize the color
+                                  color: Colors
+                                      .blue, // You can customize the color
                                 ),
                               ),
                             ],
@@ -198,7 +195,8 @@ class _UserChatState extends State<UserChat> {
                           children: [
                             Container(
                               child: Padding(
-                                padding: const EdgeInsets.only(left: 10, top: 10),
+                                padding:
+                                    const EdgeInsets.only(left: 10, top: 10),
                                 child: Text(
                                   widget.chatModel.time1,
                                   style: const TextStyle(
@@ -209,12 +207,11 @@ class _UserChatState extends State<UserChat> {
                             Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: const FaIcon(
-
                                 FontAwesomeIcons
                                     .checkDouble, // Correct usage of FaIcon
                                 size: 12.0, // You can adjust the size
                                 color:
-                                Colors.blue, // You can customize the color
+                                    Colors.blue, // You can customize the color
                               ),
                             ),
                           ],
@@ -245,7 +242,8 @@ class _UserChatState extends State<UserChat> {
                                 child: Text(widget.chatModel.message2),
                               ),
                               Container(
-                                padding: const EdgeInsets.only(left: 10, top: 10),
+                                padding:
+                                    const EdgeInsets.only(left: 10, top: 10),
                                 child: Row(
                                   children: [
                                     Text(
@@ -256,12 +254,11 @@ class _UserChatState extends State<UserChat> {
                                     Padding(
                                       padding: const EdgeInsets.all(5.0),
                                       child: const FaIcon(
-
                                         FontAwesomeIcons
                                             .checkDouble, // Correct usage of FaIcon
                                         size: 12.0, // You can adjust the size
-                                        color:
-                                        Colors.blue, // You can customize the color
+                                        color: Colors
+                                            .blue, // You can customize the color
                                       ),
                                     ),
                                   ],
@@ -303,16 +300,13 @@ class _UserChatState extends State<UserChat> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 8.0,
-                          left:5),
+                          padding: const EdgeInsets.only(top: 8.0, left: 5),
                           child: const FaIcon(
-
-                            FontAwesomeIcons
-                                .checkDouble, // Correct usage of FaIcon
-                            size: 12.0, // You can adjust the size
-                            color:
-                            Colors.blue // You can customize the color
-                          ),
+                              FontAwesomeIcons
+                                  .checkDouble, // Correct usage of FaIcon
+                              size: 12.0, // You can adjust the size
+                              color: Colors.blue // You can customize the color
+                              ),
                         )
                       ],
                     ),
@@ -348,12 +342,11 @@ class _UserChatState extends State<UserChat> {
                               Padding(
                                 padding: const EdgeInsets.all(5.0),
                                 child: const FaIcon(
-
                                   FontAwesomeIcons
                                       .checkDouble, // Correct usage of FaIcon
                                   size: 12.0, // You can adjust the size
-                                  color:
-                                  Colors.blue, // You can customize the color
+                                  color: Colors
+                                      .blue, // You can customize the color
                                 ),
                               ),
                             ],

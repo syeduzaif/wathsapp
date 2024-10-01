@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart'; // Required for ImagePicker
-import 'package:wathsapp_ui_2/call.dart'; // Import CallPage widget
-import 'package:wathsapp_ui_2/chat.dart'; // Import ChatPage widget
-import 'package:wathsapp_ui_2/comunnity.dart'; // Import Community widget
-import 'package:wathsapp_ui_2/status.dart'; // Import StatusPage widget
+import 'package:image_picker/image_picker.dart';
+import 'package:wathsapp_ui_2/call.dart';
+import 'package:wathsapp_ui_2/chat.dart';
+import 'package:wathsapp_ui_2/comunnity.dart';
+import 'package:wathsapp_ui_2/status.dart';
 
 void main() {
   runApp(const MyApp());
@@ -63,8 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 iconTheme: const IconThemeData(color: Colors.white),
               ),
               child: PopupMenuButton<String>(
-                onSelected: (value) {
-                },
+                onSelected: (value) {},
                 itemBuilder: (BuildContext context) {
                   return [
                     const PopupMenuItem(
@@ -101,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
             Comunnity(),
             ChatPage(),
