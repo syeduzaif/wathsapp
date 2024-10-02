@@ -3,15 +3,29 @@ import 'package:flutter/material.dart';
 class CommunityModel {
   final String name;
   final String message;
-  final List<String> messages; // Use a list for messages
-  final List<String> times; // Use a list for times
+  final String message1;
+  final String message2;
+  final String message3;
+  final String message4;
+  final String times;
+  final String times1;
+  final String times2;
+  final String times3;
+  final String times4;
   final String avatar;
 
   CommunityModel({
     required this.name,
     required this.message,
-    required this.messages,
+    required this.message1,
+    required this.message2,
+    required this.message3,
+    required this.message4,
     required this.times,
+    required this.times4,
+    required this.times1,
+    required this.times3,
+    required this.times2,
     required this.avatar,
   });
 }
@@ -20,39 +34,45 @@ class CommunityData {
   static List<CommunityModel> data = [
     CommunityModel(
       name: 'New Community',
-      message: 'hello',
-      messages: [
-        'How’s everything going?',
-        'Are you free this weekend?',
-        'Let’s catch up soon!',
-        'Take care!',
-      ],
-      times: ['10:20', '10:25', '10:30', '10:35', '10:40'],
+      message: 'There are many variations of passages of Lorem Ipsum available,',
+      message1: 'How’s everything going?',
+      message2: 'web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like',
+      message3: 'of letters, as opposed to using  Content here, content here making',
+      message4: 'passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
+      times: '10:20',
+      times1: '10:25',
+      times2: '10:30',
+      times3: '10:35',
+      times4: '10:40',
       avatar: "images/group.jpg",
     ),
     CommunityModel(
       name: 'Simple Eid',
-      message: 'hello',
-      messages: [
-        'How’s everything going?',
-        'Are you free this weekend?',
-        'Let’s catch up soon!',
-        'Take care!',
-      ],
-      times: ['10:20', '10:25', '10:30', '10:35', '10:40'],
+      message: 'There are many variations of passages of Lorem Ipsum available,',
+      message1: 'you need to be sure there isnt anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a',
+      message2: 'web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like',
+      message3: 'of letters, as opposed to using  Content here, content here making',
+      message4: 'passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
+      times: '10:20',
+      times1: '10:25',
+      times2: '10:30',
+      times3: '10:35',
+      times4: '10:40',
       avatar: "images/SIMPLI.png",
     ),
     CommunityModel(
       name: 'TDF Ghar',
-      message: 'hello',
-      messages: [
-        'How’s everything going?',
-        'Are you free this weekend?',
-        'Let’s catch up soon!',
-        'Take care!',
-      ],
-      times: ['10:20', '10:25', '10:30', '10:35', '10:40'],
-      avatar: "images/SIMPLI.png",
+      message: 'psum is simply dummy  and more recently with desktop publishing software fact that a reader will be distracted by the read readable content of a page when looking at its layout.',
+      message1: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
+      message2: 'passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
+      message3: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the ',
+      message4: 'There are many variations of passages of Lorem Ipsum available,',
+      times: '10:20',
+      times1: '10:25',
+      times2: '10:30',
+      times3: '10:35',
+      times4: '10:40',
+      avatar: "images/no pic.png",
     ),
   ];
 }
@@ -152,8 +172,6 @@ class _CommunityState extends State<Community> {
     );
   }
 }
-
-// Detail page to show community details
 class CommunityDetailPage extends StatelessWidget {
   final CommunityModel model;
 
@@ -186,7 +204,7 @@ class CommunityDetailPage extends StatelessWidget {
           ],
         ),
         title: Container(
-          alignment: Alignment.centerLeft, // Center the title
+          alignment: Alignment.centerLeft,
           child: Column(
             children: [
               Text(
@@ -232,39 +250,85 @@ class CommunityDetailPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(children: [
-
-
-
-
-
-
-
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: Container(
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  // Message containers
+                  messageRow(model.message, model.times),
+                  messageRow(model.message1, model.times1),
+                  messageRow(model.message2, model.times2),
+                  messageRow(model.message3, model.times3),
+                  messageRow(model.message4, model.times4),
+                ],
+              ),
+            ),
+          ),
+          Container(
             height: 60,
-            color: Colors.white, // White color for the container
+            color: Colors.white,
             child: Center(
               child: Container(
-                margin: EdgeInsets.only(left: 40, right: 40, top: 8, bottom: 8),
-                child: Text("You can reply to announcements, but only community admins can send them. ",
+                margin: const EdgeInsets.only(
+                    left: 40, right: 40, top: 8, bottom: 8),
+                child: const Text(
+                  "You can reply to announcements, but only community admins can send them.",
                   textAlign: TextAlign.center,
-
                 ),
               ),
             ),
           ),
-        ),
-      ]
+        ],
       ),
     );
   }
-}
 
-// First Community Page
+  // Widget to simplify message rows
+  Widget messageRow(String message, String time) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          margin: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
+            ),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Container(
+                width: 333,
+                child: Text(
+                  message,
+                  softWrap: true,
+                  overflow: TextOverflow.visible,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 10, top: 10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      time,
+                      style: const TextStyle(fontSize: 10, color: Colors.grey),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
 class FirstCommunityPage extends StatelessWidget {
   const FirstCommunityPage({Key? key}) : super(key: key);
 
