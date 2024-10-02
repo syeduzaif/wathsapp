@@ -93,16 +93,14 @@ class _MyHomePageState extends State<MyHomePage> {
             tabs: [
               Tab(icon: Icon(Icons.groups_2, color: Colors.white)),
               Tab(child: Text('Chats', style: TextStyle(color: Colors.white))),
-              Tab(
-                  child:
-                      Text('Updates', style: TextStyle(color: Colors.white))),
+              Tab(child:Text('Updates', style: TextStyle(color: Colors.white))),
               Tab(child: Text('Calls', style: TextStyle(color: Colors.white))),
             ],
           ),
         ),
         body: TabBarView(
           children: [
-            Comunnity(),
+            Community(),
             ChatPage(),
             StatusPage(),
             CallPage(),

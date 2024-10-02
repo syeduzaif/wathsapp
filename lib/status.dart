@@ -128,7 +128,8 @@ class _StatusPageState extends State<StatusPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => StatusViewer(
-                          status: statusData[index],
+                          statuses: statusData,
+                          initialUserIndex: index,
                         ),
                       ),
                     );
