@@ -12,6 +12,8 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       body: ListView.builder(
         itemCount: chatData.length,
@@ -39,18 +41,24 @@ class _ChatPageState extends State<ChatPage> {
                 ),
                 title: Text(
                   chatData[i].name,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
+                  style: TextStyle(
+                    color: theme.textTheme.bodyLarge?.color,
+                    fontSize: 18,
                   ),
                 ),
                 subtitle: Text(
                   chatData[i].message4,
-                  style: const TextStyle(color: Colors.grey, fontSize: 15),
+                  style: TextStyle(
+                    color: theme.textTheme.bodyMedium?.color,
+                    fontSize: 15,
+                  ),
                 ),
                 trailing: Text(
                   chatData[i].time4,
-                  style: const TextStyle(color: Colors.grey, fontSize: 12),
+                  style: TextStyle(
+                    color: theme.textTheme.bodyMedium?.color,
+                    fontSize: 12,
+                  ),
                 ),
               ),
             ),

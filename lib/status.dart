@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'Chat_model/status_page.dart';
-import 'Chat_model/funtions/text_status.dart';
-import 'Chat_model/funtions/status_view.dart';
+import 'package:wathsapp_ui_2/Chat_model/funtions/text_status.dart';
+import 'package:wathsapp_ui_2/Chat_model/funtions/status_view.dart';
 import 'dart:io'; // For using the File class
 
 class StatusPage extends StatefulWidget {
@@ -27,11 +27,13 @@ class _StatusPageState extends State<StatusPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       body: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 20, top: 16, bottom: 15),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, top: 16, bottom: 15),
             child: Row(
               children: [
                 Text(
@@ -39,6 +41,7 @@ class _StatusPageState extends State<StatusPage> {
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
+                    color: theme.textTheme.bodyLarge?.color,
                   ),
                 ),
               ],
@@ -56,7 +59,8 @@ class _StatusPageState extends State<StatusPage> {
                         radius: 25,
                         backgroundImage: _pickedImage != null
                             ? FileImage(File(_pickedImage!.path))
-                            : AssetImage('images/no pic.png') as ImageProvider,
+                            : const AssetImage('images/no_pic.png')
+                                as ImageProvider,
                       ),
                     ),
                   ],
@@ -64,7 +68,7 @@ class _StatusPageState extends State<StatusPage> {
                 Expanded(
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: const Column(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -72,11 +76,15 @@ class _StatusPageState extends State<StatusPage> {
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
+                            color: theme.textTheme.bodyLarge
+                                ?.color, // Updated text theme access
                           ),
                         ),
                         Text(
                           'Tap to add status update',
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyle(
+                            color: theme.textTheme.bodyMedium?.color,
+                          ), // Use theme color
                         ),
                       ],
                     ),
@@ -84,7 +92,7 @@ class _StatusPageState extends State<StatusPage> {
                 ),
                 IconButton(
                   icon: const Icon(Icons.edit),
-                  color: const Color(0xFF075E54),
+                  color: theme.iconTheme.color, // Use theme color
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -97,13 +105,16 @@ class _StatusPageState extends State<StatusPage> {
               ],
             ),
           ),
-          const Row(
+          Row(
             children: [
               Padding(
-                padding: EdgeInsets.only(left: 15.0),
+                padding: const EdgeInsets.only(left: 15.0),
                 child: Text(
                   'Recent updates',
-                  style: TextStyle(fontSize: 15, color: Colors.grey),
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: theme.textTheme.bodyLarge?.color,
+                  ), // Use theme color
                 ),
               ),
             ],
@@ -121,8 +132,18 @@ class _StatusPageState extends State<StatusPage> {
                       backgroundImage: AssetImage(statusData[index].avatar),
                     ),
                   ),
-                  title: Text(statusData[index].name),
-                  subtitle: Text(statusData[index].time),
+                  title: Text(
+                    statusData[index].name,
+                    style: TextStyle(
+                        color: theme.textTheme.bodyLarge
+                            ?.color), // Updated text theme access
+                  ),
+                  subtitle: Text(
+                    statusData[index].time,
+                    style: TextStyle(
+                        color: theme
+                            .textTheme.bodyMedium?.color), // Use theme color
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -141,7 +162,7 @@ class _StatusPageState extends State<StatusPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xFF075E54),
+        backgroundColor: theme.primaryColor, // Use theme color
         onPressed: _getImage,
         child: const Icon(Icons.camera_alt, color: Colors.white),
       ),
@@ -153,10 +174,8 @@ class MyPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white
+      ..color = Colors.green // You can change this to a theme color if needed
       ..style = PaintingStyle.fill;
-
-    paint.color = Colors.green;
 
     canvas.drawCircle(Offset(size.width / 2, size.height / 2), 27, paint);
   }

@@ -24,10 +24,12 @@ class _UserChatState extends State<UserChat> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF075E54),
+        backgroundColor: theme.appBarTheme.backgroundColor,
         leadingWidth: 90,
         leading: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -137,8 +139,8 @@ class _UserChatState extends State<UserChat> {
                   Container(
                     margin: const EdgeInsets.all(8),
                     padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 159, 246, 166),
+                    decoration: BoxDecoration(
+                      color: theme.textTheme.displaySmall?.color,
                       borderRadius: BorderRadius.all(
                         Radius.circular(10),
                       ),
@@ -146,7 +148,11 @@ class _UserChatState extends State<UserChat> {
                     child: Row(
                       children: [
                         Container(
-                          child: Text(widget.chatModel.message),
+                          child: Text(
+                            widget.chatModel.message,
+                            style: TextStyle(
+                                color: theme.textTheme.bodyLarge?.color),
+                          ),
                         ),
                         Container(
                           padding: const EdgeInsets.only(left: 10, top: 10),
@@ -154,8 +160,9 @@ class _UserChatState extends State<UserChat> {
                             children: [
                               Text(
                                 widget.chatModel.time,
-                                style: const TextStyle(
-                                    fontSize: 10, color: Colors.grey),
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    color: theme.textTheme.bodyMedium?.color),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(5.0),
@@ -181,8 +188,8 @@ class _UserChatState extends State<UserChat> {
                   Container(
                     margin: const EdgeInsets.all(8),
                     padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: theme.textTheme.displayMedium?.color,
                       borderRadius: BorderRadius.all(
                         Radius.circular(10),
                       ),
@@ -190,24 +197,29 @@ class _UserChatState extends State<UserChat> {
                     child: Row(
                       children: [
                         Container(
-                          child: Text(widget.chatModel.message1),
+                          child: Text(
+                            widget.chatModel.message1,
+                            style: TextStyle(
+                                color: theme.textTheme.bodyLarge?.color),
+                          ),
                         ),
                         Row(
                           children: [
                             Container(
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 10, top: 10),
-                                child: Text(
-                                  widget.chatModel.time1,
-                                  style: const TextStyle(
-                                      fontSize: 10, color: Colors.grey),
-                                ),
-                              ),
+                                  padding:
+                                      const EdgeInsets.only(left: 10, top: 10),
+                                  child: Text(
+                                    widget.chatModel.time1,
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        color:
+                                            theme.textTheme.bodyMedium?.color),
+                                  )),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: const FaIcon(
+                            const Padding(
+                              padding: EdgeInsets.all(5.0),
+                              child: FaIcon(
                                 FontAwesomeIcons
                                     .checkDouble, // Correct usage of FaIcon
                                 size: 12.0, // You can adjust the size
@@ -228,8 +240,8 @@ class _UserChatState extends State<UserChat> {
                   Container(
                     margin: const EdgeInsets.all(8),
                     padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 159, 246, 166),
+                    decoration: BoxDecoration(
+                      color: theme.textTheme.displaySmall?.color,
                       borderRadius: BorderRadius.all(
                         Radius.circular(10),
                       ),
@@ -240,7 +252,11 @@ class _UserChatState extends State<UserChat> {
                           child: Row(
                             children: [
                               Container(
-                                child: Text(widget.chatModel.message2),
+                                child: Text(
+                                  widget.chatModel.message2,
+                                  style: TextStyle(
+                                      color: theme.textTheme.bodyLarge?.color),
+                                ),
                               ),
                               Container(
                                 padding:
@@ -249,8 +265,10 @@ class _UserChatState extends State<UserChat> {
                                   children: [
                                     Text(
                                       widget.chatModel.time2,
-                                      style: const TextStyle(
-                                          fontSize: 10, color: Colors.grey),
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          color: theme
+                                              .textTheme.bodyMedium?.color),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(5.0),
@@ -279,8 +297,8 @@ class _UserChatState extends State<UserChat> {
                   Container(
                     margin: const EdgeInsets.all(8),
                     padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: theme.textTheme.displayMedium?.color,
                       borderRadius: BorderRadius.all(
                         Radius.circular(10),
                       ),
@@ -288,15 +306,20 @@ class _UserChatState extends State<UserChat> {
                     child: Row(
                       children: [
                         Container(
-                          child: Text(widget.chatModel.message3),
+                          child: Text(
+                            widget.chatModel.message3,
+                            style: TextStyle(
+                                color: theme.textTheme.bodyLarge?.color),
+                          ),
                         ),
                         Container(
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10, top: 10),
                             child: Text(
                               widget.chatModel.time3,
-                              style: const TextStyle(
-                                  fontSize: 10, color: Colors.grey),
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: theme.textTheme.bodyMedium?.color),
                             ),
                           ),
                         ),
@@ -320,8 +343,8 @@ class _UserChatState extends State<UserChat> {
                   Container(
                     margin: const EdgeInsets.all(8),
                     padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 159, 246, 166),
+                    decoration: BoxDecoration(
+                      color: theme.textTheme.displaySmall?.color,
                       borderRadius: BorderRadius.all(
                         Radius.circular(10),
                       ),
@@ -329,7 +352,11 @@ class _UserChatState extends State<UserChat> {
                     child: Row(
                       children: [
                         Container(
-                          child: Text(widget.chatModel.message),
+                          child: Text(
+                            widget.chatModel.message,
+                            style: TextStyle(
+                                color: theme.textTheme.bodyLarge?.color),
+                          ),
                         ),
                         Container(
                           padding: const EdgeInsets.only(left: 10, top: 10),
@@ -337,8 +364,9 @@ class _UserChatState extends State<UserChat> {
                             children: [
                               Text(
                                 widget.chatModel.time,
-                                style: const TextStyle(
-                                    fontSize: 10, color: Colors.grey),
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    color: theme.textTheme.bodyMedium?.color),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(5.0),
@@ -416,9 +444,7 @@ class _UserChatState extends State<UserChat> {
               ],
             ),
           )
-        ]
-            // "Chat with ${widget.chatModel.name}",
-            ), // Display chat message
+        ]),
       ),
     );
   }

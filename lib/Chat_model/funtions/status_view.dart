@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:wathsapp_ui_2/Chat_model/status_page.dart';
 
-
 class StatusViewer extends StatefulWidget {
   final List<StatusModel> statuses;
   final int initialUserIndex;
 
-  const StatusViewer({Key? key, required this.statuses, required this.initialUserIndex}) : super(key: key);
+  const StatusViewer(
+      {super.key, required this.statuses, required this.initialUserIndex});
 
   @override
   _StatusViewerState createState() => _StatusViewerState();
@@ -29,11 +29,12 @@ class _StatusViewerState extends State<StatusViewer> {
   }
 
   void startTimer() {
-    timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
+    timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
       setState(() {
         progressValue += 0.01;
         if (progressValue >= 1.0) {
-          if (currentIndex < widget.statuses[userIndex].statusImages.length - 1) {
+          if (currentIndex <
+              widget.statuses[userIndex].statusImages.length - 1) {
             currentIndex++;
             progressValue = 0.0;
           } else {
@@ -81,7 +82,8 @@ class _StatusViewerState extends State<StatusViewer> {
               moveToNextUser();
             }
           } else {
-            if (currentIndex < widget.statuses[userIndex].statusImages.length - 1) {
+            if (currentIndex <
+                widget.statuses[userIndex].statusImages.length - 1) {
               setState(() {
                 currentIndex++;
                 progressValue = 0.0;
@@ -120,41 +122,47 @@ class _StatusViewerState extends State<StatusViewer> {
                     children: [
                       // Progress bar segmented by the number of images
                       Row(
-                        children: List.generate(widget.statuses[index].statusImages.length, (imageIndex) {
+                        children: List.generate(
+                            widget.statuses[index].statusImages.length,
+                            (imageIndex) {
                           return Expanded(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 2.0),
                               child: LinearProgressIndicator(
                                 value: imageIndex == currentIndex
                                     ? progressValue
                                     : (imageIndex < currentIndex ? 1.0 : 0.0),
-                                valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                                valueColor: const AlwaysStoppedAnimation<Color>(
+                                    Colors.green),
                                 backgroundColor: Colors.white.withOpacity(0.3),
                               ),
                             ),
                           );
                         }),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Row(
                         children: [
                           IconButton(
-                            icon: Icon(Icons.arrow_back, color: Colors.white),
+                            icon: const Icon(Icons.arrow_back,
+                                color: Colors.white),
                             onPressed: () {
                               Navigator.pop(context);
                             },
                           ),
                           CircleAvatar(
-                            backgroundImage: AssetImage(widget.statuses[index].avatar),
+                            backgroundImage:
+                                AssetImage(widget.statuses[index].avatar),
                             radius: 25,
                           ),
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 widget.statuses[index].name,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
@@ -162,7 +170,7 @@ class _StatusViewerState extends State<StatusViewer> {
                               ),
                               Text(
                                 widget.statuses[index].time,
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               ),
                             ],
                           ),
@@ -173,38 +181,38 @@ class _StatusViewerState extends State<StatusViewer> {
                 ),
                 // Reply Section
                 Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Container(
-                    padding: EdgeInsets.all(10),
-                color: Colors.black54,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                          hintText: "Type a reply...",
-                          hintStyle: TextStyle(color: Colors.grey),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide.none,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    color: Colors.black54,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            style: const TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                              hintText: "Type a reply...",
+                              hintStyle: const TextStyle(color: Colors.grey),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: BorderSide.none,
+                              ),
+                              filled: true,
+                              fillColor: Colors.black,
+                            ),
                           ),
-                          filled: true,
-                          fillColor: Colors.black,
                         ),
-                      ),
+                        IconButton(
+                          icon: const Icon(Icons.send, color: Colors.green),
+                          onPressed: () {},
+                        ),
+                      ],
                     ),
-                    IconButton(
-                      icon: const Icon(Icons.send, color: Colors.green),
-                      onPressed: () {},
-                    ),
-                  ],
+                  ),
                 ),
-            ),
-            ),
-    ],
+              ],
             );
           },
         ),

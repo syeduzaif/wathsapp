@@ -12,16 +12,19 @@ class CallPage extends StatefulWidget {
 class _CallPageState extends State<CallPage> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       body: ListView.builder(
         itemCount: callData.length,
         itemBuilder: (context, i) {
           if (i == 0) {
-            return const Padding(
+            return Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
                 'Recent',
                 style: TextStyle(
+                  color: theme.textTheme.bodyLarge?.color,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
@@ -48,8 +51,8 @@ class _CallPageState extends State<CallPage> {
                   ),
                   title: Text(
                     callData[i].name,
-                    style: const TextStyle(
-                      color: Colors.black,
+                    style: TextStyle(
+                      color: theme.textTheme.bodyLarge?.color,
                       fontSize: 15,
                     ),
                   ),
@@ -58,19 +61,19 @@ class _CallPageState extends State<CallPage> {
                       Container(
                         child: callData[i].callType,
                       ),
-                      const SizedBox(
-                          width: 8), // Add spacing between call type and time
+                      const SizedBox(width: 8),
                       Text(
                         callData[i].time,
-                        style:
-                            const TextStyle(color: Colors.grey, fontSize: 12),
+                        style: TextStyle(
+                            color: theme.textTheme.bodyLarge?.color,
+                            fontSize: 12),
                       ),
                     ],
                   ),
-                  trailing: const Icon(
+                  trailing: Icon(
                     Icons.call,
                     size: 25,
-                    color: Color(0xFF075E54),
+                    color: theme.iconTheme.color,
                   ),
                 ),
               ],

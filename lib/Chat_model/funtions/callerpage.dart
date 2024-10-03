@@ -14,9 +14,11 @@ class CallerPage extends StatefulWidget {
 class _CallerPageState extends State<CallerPage> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF075E54),
+        backgroundColor: theme.appBarTheme.backgroundColor,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
@@ -26,7 +28,7 @@ class _CallerPageState extends State<CallerPage> {
             Navigator.pop(context);
           },
         ),
-        title: const Text(
+        title: Text(
           "Call Info",
           style: TextStyle(color: Colors.white, fontSize: 22),
         ),
@@ -85,10 +87,17 @@ class _CallerPageState extends State<CallerPage> {
                       children: [
                         Text(
                           widget.callModel.name,
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              color: theme.textTheme.bodyLarge?.color,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold),
                         ),
-                        Text(widget.callModel.about)
+                        Text(
+                          widget.callModel.about,
+                          style: TextStyle(
+                            color: theme.textTheme.bodyMedium?.color,
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -97,18 +106,18 @@ class _CallerPageState extends State<CallerPage> {
                   padding: const EdgeInsets.all(10),
                   child: IconButton(
                       onPressed: () {},
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.phone,
-                        color: Color(0xFF075E54),
+                        color: theme.iconTheme.color,
                       )),
                 ),
                 Container(
                   padding: const EdgeInsets.all(10),
                   child: IconButton(
                       onPressed: () {},
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.video_call_outlined,
-                        color: Color(0xFF075E54),
+                        color: theme.iconTheme.color,
                       )),
                 )
               ],
@@ -121,7 +130,12 @@ class _CallerPageState extends State<CallerPage> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(widget.callModel.day),
+                    child: Text(
+                      widget.callModel.day,
+                      style: TextStyle(
+                        color: theme.textTheme.bodyLarge?.color,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -167,7 +181,9 @@ class _CallerPageState extends State<CallerPage> {
                             ),
                             Text(
                               widget.callModel.time,
-                              style: const TextStyle(color: Colors.grey),
+                              style: TextStyle(
+                                color: theme.textTheme.bodyMedium?.color,
+                              ),
                             ),
                           ],
                         )
@@ -176,7 +192,9 @@ class _CallerPageState extends State<CallerPage> {
                   )
                 ],
               ),
-              SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Row(
                 children: [
                   Container(
@@ -199,10 +217,10 @@ class _CallerPageState extends State<CallerPage> {
                               .callModel.i_call, // Displaying the reply status
                           style: TextStyle(
                             color: widget.callModel.i_iconType ==
-                                CallModel.callRecived
+                                    CallModel.callRecived
                                 ? Colors.green
                                 : Colors
-                                .red, // Set text color based on call type
+                                    .red, // Set text color based on call type
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),

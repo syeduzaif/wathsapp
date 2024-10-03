@@ -30,18 +30,17 @@ class _TextStatusState extends State<TextStatus> {
                       color: Colors.black.withOpacity(0.60),
                     ),
                     onPressed: () {
-                      Navigator.pop(
-                          context); // Navigate back to the previous page
+                      Navigator.pop(context);
                     },
                   ),
                 ),
-                const Spacer(), // This will push the icons to the left
+                const Spacer(),
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: Icon(
                     Icons.emoji_emotions,
                     size: 50,
-                    color: Colors.black.withOpacity(0.60), // Set color for icon
+                    color: Colors.black.withOpacity(0.60),
                   ),
                 ),
                 Padding(
@@ -57,11 +56,9 @@ class _TextStatusState extends State<TextStatus> {
             const Expanded(
               // This will take the remaining space
               child: Padding(
-                padding: EdgeInsets.all(
-                    16.0), // Add some padding around the TextField
+                padding: EdgeInsets.all(16.0),
                 child: Padding(
-                  padding:
-                      EdgeInsets.only(top: 100), // Adjust top padding as needed
+                  padding: EdgeInsets.only(top: 100),
                   child: TextField(
                     textAlign: TextAlign.center, // Center text horizontally
                     style: TextStyle(fontSize: 50), // Increase font size

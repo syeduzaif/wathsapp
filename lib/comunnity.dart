@@ -34,11 +34,15 @@ class CommunityData {
   static List<CommunityModel> data = [
     CommunityModel(
       name: 'New Community',
-      message: 'There are many variations of passages of Lorem Ipsum available,',
+      message:
+          'There are many variations of passages of Lorem Ipsum available,',
       message1: 'How’s everything going?',
-      message2: 'web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like',
-      message3: 'of letters, as opposed to using  Content here, content here making',
-      message4: 'passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
+      message2:
+          'web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like',
+      message3:
+          'of letters, as opposed to using  Content here, content here making',
+      message4:
+          'passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
       times: '10:20',
       times1: '10:25',
       times2: '10:30',
@@ -48,11 +52,16 @@ class CommunityData {
     ),
     CommunityModel(
       name: 'Simple Eid',
-      message: 'There are many variations of passages of Lorem Ipsum available,',
-      message1: 'you need to be sure there isnt anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a',
-      message2: 'web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like',
-      message3: 'of letters, as opposed to using  Content here, content here making',
-      message4: 'passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
+      message:
+          'There are many variations of passages of Lorem Ipsum available,',
+      message1:
+          'you need to be sure there isnt anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a',
+      message2:
+          'web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like',
+      message3:
+          'of letters, as opposed to using  Content here, content here making',
+      message4:
+          'passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
       times: '10:20',
       times1: '10:25',
       times2: '10:30',
@@ -62,11 +71,16 @@ class CommunityData {
     ),
     CommunityModel(
       name: 'TDF Ghar',
-      message: 'psum is simply dummy  and more recently with desktop publishing software fact that a reader will be distracted by the read readable content of a page when looking at its layout.',
-      message1: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
-      message2: 'passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
-      message3: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the ',
-      message4: 'There are many variations of passages of Lorem Ipsum available,',
+      message:
+          'psum is simply dummy  and more recently with desktop publishing software fact that a reader will be distracted by the read readable content of a page when looking at its layout.',
+      message1:
+          'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
+      message2:
+          'passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum',
+      message3:
+          'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the ',
+      message4:
+          'There are many variations of passages of Lorem Ipsum available,',
       times: '10:20',
       times1: '10:25',
       times2: '10:30',
@@ -87,7 +101,10 @@ class Community extends StatefulWidget {
 class _CommunityState extends State<Community> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: ListView.builder(
         itemCount: CommunityData.data.length,
         itemBuilder: (context, i) {
@@ -98,7 +115,6 @@ class _CommunityState extends State<Community> {
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      // Navigate to the appropriate screen
                       if (i == 0) {
                         Navigator.push(
                           context,
@@ -120,14 +136,9 @@ class _CommunityState extends State<Community> {
                     child: Container(
                       height: 85,
                       decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 2,
-                        ),
+                        color: theme.cardColor,
                         boxShadow: [
-                          if (i ==
-                              0) // Only add spread radius for the first item
+                          if (i == 0)
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.2),
                               spreadRadius: 5,
@@ -142,9 +153,8 @@ class _CommunityState extends State<Community> {
                             width: 50,
                             height: 50,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: Colors.grey[300],
-                            ),
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.black12),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: CircleAvatar(
@@ -156,8 +166,10 @@ class _CommunityState extends State<Community> {
                           ),
                           Text(
                             CommunityData.data[i].name,
-                            style: const TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: theme.textTheme.bodyLarge?.color),
                           ),
                         ],
                       ),
@@ -172,6 +184,7 @@ class _CommunityState extends State<Community> {
     );
   }
 }
+
 class CommunityDetailPage extends StatelessWidget {
   final CommunityModel model;
 
@@ -179,10 +192,13 @@ class CommunityDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context); // Get theme
+
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade100,
+      backgroundColor:
+          theme.scaffoldBackgroundColor, // Use theme for background
       appBar: AppBar(
-        backgroundColor: const Color(0xFF075E54),
+        backgroundColor: theme.appBarTheme.backgroundColor,
         leadingWidth: 90,
         leading: Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -257,25 +273,29 @@ class CommunityDetailPage extends StatelessWidget {
               child: Column(
                 children: [
                   // Message containers
-                  messageRow(model.message, model.times),
-                  messageRow(model.message1, model.times1),
-                  messageRow(model.message2, model.times2),
-                  messageRow(model.message3, model.times3),
-                  messageRow(model.message4, model.times4),
+                  messageRow(context, model.message, model.times),
+                  messageRow(context, model.message1, model.times1),
+                  messageRow(context, model.message2, model.times2),
+                  messageRow(context, model.message3, model.times3),
+                  messageRow(context, model.message4, model.times4),
                 ],
               ),
             ),
           ),
           Container(
             height: 60,
-            color: Colors.white,
+            color: theme.cardColor, // Use theme for card color
             child: Center(
               child: Container(
+                color: theme.cardColor,
                 margin: const EdgeInsets.only(
                     left: 40, right: 40, top: 8, bottom: 8),
-                child: const Text(
+                child: Text(
                   "You can reply to announcements, but only community admins can send them.",
                   textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: theme
+                          .textTheme.bodyLarge?.color), // Use theme text color
                 ),
               ),
             ),
@@ -286,16 +306,18 @@ class CommunityDetailPage extends StatelessWidget {
   }
 
   // Widget to simplify message rows
-  Widget messageRow(String message, String time) {
+  Widget messageRow(BuildContext context, String message, String time) {
+    final theme = Theme.of(context); // Get theme here
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
           margin: const EdgeInsets.all(8),
           padding: const EdgeInsets.all(8),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(
+          decoration: BoxDecoration(
+            color: theme.textTheme.displayMedium?.color,
+            borderRadius: const BorderRadius.all(
               Radius.circular(10),
             ),
           ),
@@ -308,6 +330,7 @@ class CommunityDetailPage extends StatelessWidget {
                   message,
                   softWrap: true,
                   overflow: TextOverflow.visible,
+                  style: TextStyle(color: theme.textTheme.bodyLarge?.color),
                 ),
               ),
               Container(
@@ -329,6 +352,7 @@ class CommunityDetailPage extends StatelessWidget {
     );
   }
 }
+
 class FirstCommunityPage extends StatelessWidget {
   const FirstCommunityPage({Key? key}) : super(key: key);
 
