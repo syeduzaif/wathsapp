@@ -20,7 +20,7 @@ class _CallPageState extends State<CallPage> {
         itemBuilder: (context, i) {
           if (i == 0) {
             return Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Text(
                 'Recent',
                 style: TextStyle(

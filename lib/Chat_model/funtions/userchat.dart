@@ -1,4 +1,6 @@
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:wathsapp_ui_2/Chat_model/chat_model.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,13 +15,50 @@ class UserChat extends StatefulWidget {
 }
 
 class _UserChatState extends State<UserChat> {
+
+
   final ImagePicker imagePicker = ImagePicker();
+  final TextEditingController _controller = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+  bool _emojiPick = false;
 
   Future<void> getImage() async {
     final pickedImage = await imagePicker.pickImage(source: ImageSource.camera);
     if (pickedImage != null) {
       setState(() {});
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _focusNode.addListener(() {
+      if (_focusNode.hasFocus && _emojiPick) {
+        setState(() {
+          _emojiPick = false;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  void _toggleEmojiPick() {
+    if (_emojiPick) {
+      _focusNode.requestFocus();
+    } else {
+      _focusNode.unfocus();
+    }
+
+    setState(() {
+      _emojiPick = !_emojiPick;
+    });
   }
 
   @override
@@ -140,8 +179,8 @@ class _UserChatState extends State<UserChat> {
                     margin: const EdgeInsets.all(8),
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: theme.textTheme.displaySmall?.color,
-                      borderRadius: BorderRadius.all(
+                      color: theme.textTheme.displayMedium?.color,
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(10),
                       ),
                     ),
@@ -155,28 +194,25 @@ class _UserChatState extends State<UserChat> {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.only(left: 10, top: 10),
-                          child: Row(
-                            children: [
-                              Text(
-                                widget.chatModel.time,
-                                style: TextStyle(
-                                    fontSize: 10,
-                                    color: theme.textTheme.bodyMedium?.color),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: const FaIcon(
-                                  FontAwesomeIcons
-                                      .checkDouble, // Correct usage of FaIcon
-                                  size: 12.0, // You can adjust the size
-                                  color: Colors
-                                      .blue, // You can customize the color
-                                ),
-                              ),
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 10),
+                            child: Text(
+                              widget.chatModel.time,
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: theme.textTheme.bodyMedium?.color),
+                            ),
                           ),
                         ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 8.0, left: 5),
+                          child: FaIcon(
+                              FontAwesomeIcons
+                                  .checkDouble, // Correct usage of FaIcon
+                              size: 12.0, // You can adjust the size
+                              color: Colors.blue // You can customize the color
+                          ),
+                        )
                       ],
                     ),
                   )
@@ -190,7 +226,7 @@ class _UserChatState extends State<UserChat> {
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       color: theme.textTheme.displayMedium?.color,
-                      borderRadius: BorderRadius.all(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(10),
                       ),
                     ),
@@ -203,35 +239,29 @@ class _UserChatState extends State<UserChat> {
                                 color: theme.textTheme.bodyLarge?.color),
                           ),
                         ),
-                        Row(
-                          children: [
-                            Container(
-                              child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 10),
-                                  child: Text(
-                                    widget.chatModel.time1,
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        color:
-                                            theme.textTheme.bodyMedium?.color),
-                                  )),
+                        Container(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 10),
+                            child: Text(
+                              widget.chatModel.time1,
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: theme.textTheme.bodyMedium?.color),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.all(5.0),
-                              child: FaIcon(
-                                FontAwesomeIcons
-                                    .checkDouble, // Correct usage of FaIcon
-                                size: 12.0, // You can adjust the size
-                                color:
-                                    Colors.blue, // You can customize the color
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 8.0, left: 5),
+                          child: FaIcon(
+                              FontAwesomeIcons
+                                  .checkDouble, // Correct usage of FaIcon
+                              size: 12.0, // You can adjust the size
+                              color: Colors.blue // You can customize the color
+                          ),
+                        )
                       ],
                     ),
-                  ),
+                  )
                 ],
               ),
               Row(
@@ -241,51 +271,40 @@ class _UserChatState extends State<UserChat> {
                     margin: const EdgeInsets.all(8),
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: theme.textTheme.displaySmall?.color,
-                      borderRadius: BorderRadius.all(
+                      color: theme.textTheme.displayMedium?.color,
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(10),
                       ),
                     ),
                     child: Row(
                       children: [
                         Container(
-                          child: Row(
-                            children: [
-                              Container(
-                                child: Text(
-                                  widget.chatModel.message2,
-                                  style: TextStyle(
-                                      color: theme.textTheme.bodyLarge?.color),
-                                ),
-                              ),
-                              Container(
-                                padding:
-                                    const EdgeInsets.only(left: 10, top: 10),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      widget.chatModel.time2,
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: theme
-                                              .textTheme.bodyMedium?.color),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: const FaIcon(
-                                        FontAwesomeIcons
-                                            .checkDouble, // Correct usage of FaIcon
-                                        size: 12.0, // You can adjust the size
-                                        color: Colors
-                                            .blue, // You can customize the color
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                          child: Text(
+                            widget.chatModel.message2,
+                            style: TextStyle(
+                                color: theme.textTheme.bodyLarge?.color),
                           ),
                         ),
+                        Container(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 10),
+                            child: Text(
+                              widget.chatModel.time2,
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: theme.textTheme.bodyMedium?.color),
+                            ),
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 8.0, left: 5),
+                          child: FaIcon(
+                              FontAwesomeIcons
+                                  .checkDouble, // Correct usage of FaIcon
+                              size: 12.0, // You can adjust the size
+                              color: Colors.blue // You can customize the color
+                          ),
+                        )
                       ],
                     ),
                   )
@@ -299,7 +318,7 @@ class _UserChatState extends State<UserChat> {
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       color: theme.textTheme.displayMedium?.color,
-                      borderRadius: BorderRadius.all(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(10),
                       ),
                     ),
@@ -323,9 +342,9 @@ class _UserChatState extends State<UserChat> {
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0, left: 5),
-                          child: const FaIcon(
+                        const Padding(
+                          padding: EdgeInsets.only(top: 8.0, left: 5),
+                          child: FaIcon(
                               FontAwesomeIcons
                                   .checkDouble, // Correct usage of FaIcon
                               size: 12.0, // You can adjust the size
@@ -344,8 +363,8 @@ class _UserChatState extends State<UserChat> {
                     margin: const EdgeInsets.all(8),
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: theme.textTheme.displaySmall?.color,
-                      borderRadius: BorderRadius.all(
+                      color: theme.textTheme.displayMedium?.color,
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(10),
                       ),
                     ),
@@ -353,34 +372,31 @@ class _UserChatState extends State<UserChat> {
                       children: [
                         Container(
                           child: Text(
-                            widget.chatModel.message,
+                            widget.chatModel.message4,
                             style: TextStyle(
                                 color: theme.textTheme.bodyLarge?.color),
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.only(left: 10, top: 10),
-                          child: Row(
-                            children: [
-                              Text(
-                                widget.chatModel.time,
-                                style: TextStyle(
-                                    fontSize: 10,
-                                    color: theme.textTheme.bodyMedium?.color),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: const FaIcon(
-                                  FontAwesomeIcons
-                                      .checkDouble, // Correct usage of FaIcon
-                                  size: 12.0, // You can adjust the size
-                                  color: Colors
-                                      .blue, // You can customize the color
-                                ),
-                              ),
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10, top: 10),
+                            child: Text(
+                              widget.chatModel.time4,
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: theme.textTheme.bodyMedium?.color),
+                            ),
                           ),
                         ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 8.0, left: 5),
+                          child: FaIcon(
+                              FontAwesomeIcons
+                                  .checkDouble, // Correct usage of FaIcon
+                              size: 12.0, // You can adjust the size
+                              color: Colors.blue // You can customize the color
+                          ),
+                        )
                       ],
                     ),
                   )
@@ -390,62 +406,80 @@ class _UserChatState extends State<UserChat> {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Row(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width - 60,
-                    child: Card(
-                      margin:
-                          const EdgeInsets.only(left: 10, right: 10, bottom: 5),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: TextFormField(
-                        textAlignVertical: TextAlignVertical.center,
-                        decoration: InputDecoration(
-                          hintText:
-                              "Type message here", // Optional: Use hintText instead
-                          prefixIcon: IconButton(
-                            icon: const Icon(Icons.emoji_emotions),
-                            onPressed: () {},
+                if (_emojiPick)
+                  SizedBox(
+                      height: 250,
+                      child: EmojiPicker(
+                        onEmojiSelected: (category, emoji) {/* ...*/},
+                        config: Config(/* ...*/),
+
+                      )),
+                Row(
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width - 60,
+                        child: Card(
+                          margin: const EdgeInsets.only(
+                              left: 10, right: 10, bottom: 5),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
                           ),
-                          suffixIcon: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.attach_file),
+                          child: TextFormField(
+                            controller: _controller,
+                            focusNode: _focusNode,
+                            textAlignVertical: TextAlignVertical.center,
+                            style: TextStyle(color: Colors.black, ), // Set the text color to black
+                            decoration: InputDecoration(
+                              hintText: "Type message here",
+                              hintStyle: TextStyle(color: Colors.grey), // Optional: Change hint text color if needed
+                              prefixIcon: IconButton(
+                                icon: const Icon(Icons.emoji_emotions),
+                                onPressed: _toggleEmojiPick,
                               ),
-                              IconButton(
-                                onPressed: () {
-                                  getImage();
-                                },
-                                icon: const Icon(Icons.camera_alt),
+                              suffixIcon: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.attach_file),
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      getImage();
+                                    },
+                                    icon: const Icon(Icons.camera_alt),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
+
                         ),
                       ),
                     ),
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(right: 8.0),
-                  child: CircleAvatar(
-                    radius: 25,
-                    backgroundColor: Color(0xFF075E54),
-                    child: Icon(
-                      Icons.send,
-                      color: Colors.white,
+                    const Padding(
+                      padding: EdgeInsets.only(right: 8.0),
+                      child: CircleAvatar(
+                        radius: 25,
+                        backgroundColor: Color(0xFF075E54),
+                        child: Icon(
+                          Icons.send,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),
-          )
+          ),
         ]),
       ),
     );
+
   }
 }

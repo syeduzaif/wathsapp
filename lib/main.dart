@@ -4,6 +4,7 @@ import 'package:wathsapp_ui_2/call.dart';
 import 'package:wathsapp_ui_2/chat.dart';
 import 'package:wathsapp_ui_2/comunnity.dart';
 import 'package:wathsapp_ui_2/status.dart';
+import 'package:wathsapp_ui_2/reels.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  ThemeMode _themeMode = ThemeMode.system; // Manage the current theme mode
+  ThemeMode _themeMode = ThemeMode.system;
 
   @override
   Widget build(BuildContext context) {
@@ -67,10 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return DefaultTabController(
       initialIndex: 1,
-      length: 4, // Number of tabs
+      length: 5, // Number of tabs
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             'WhatsApp',
             style: TextStyle(color: Colors.white, fontSize: 24),
           ),
@@ -111,16 +112,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   const PopupMenuDivider(), // Divider between menu sections
                   const PopupMenuItem(
-                    child: Text('Light Theme'),
-                    value: 'light', // Set light theme
+                    value: 'light',
+                    child: Text('Light Theme'), // Set light theme
                   ),
                   const PopupMenuItem(
-                    child: Text('Dark Theme'),
-                    value: 'dark', // Set dark theme
+                    value: 'dark',
+                    child: Text('Dark Theme'), // Set dark theme
                   ),
                   const PopupMenuItem(
-                    child: Text('System Default Theme'),
-                    value: 'system', // Use system default theme
+                    value: 'system',
+                    child: Text(
+                        'System Default Theme'), // Use system default theme
                   ),
                 ];
               },
@@ -129,23 +131,25 @@ class _MyHomePageState extends State<MyHomePage> {
           bottom: const TabBar(
             labelColor: Colors.red,
             indicatorColor: Colors.white,
-            indicatorSize: TabBarIndicatorSize.tab,
+            indicatorSize: TabBarIndicatorSize.label, // Make the indicator as wide as the label
+            labelPadding: EdgeInsets.symmetric(horizontal: 12.0), // Adjust padding to decrease tab width
             tabs: [
               Tab(icon: Icon(Icons.groups_2, color: Colors.white)),
-              Tab(child: Text('Chats', style: TextStyle(color: Colors.white))),
-              Tab(
-                  child:
-                      Text('Updates', style: TextStyle(color: Colors.white))),
-              Tab(child: Text('Calls', style: TextStyle(color: Colors.white))),
+              Tab(child: Text('Chats', style: TextStyle(color: Colors.white, fontSize: 12))), // Adjust font size
+              Tab(child: Text('Updates', style: TextStyle(color: Colors.white, fontSize: 12))),
+              Tab(child: Text('Calls', style: TextStyle(color: Colors.white, fontSize: 12))),
+              Tab(child: Text('Reels', style: TextStyle(color: Colors.white, fontSize: 12))),
             ],
           ),
+
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             Community(),
             ChatPage(),
             StatusPage(),
             CallPage(),
+            Reels(),
           ],
         ),
       ),
@@ -156,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
 final ThemeData lightTheme = ThemeData(
   primaryColor: const Color(0xFF075E54), // WhatsApp green
   cardColor: const Color.fromARGB(255, 241, 241, 241),
-  scaffoldBackgroundColor: Color.fromARGB(255, 248, 248, 248),
+  scaffoldBackgroundColor: const Color.fromARGB(255, 248, 248, 248),
   appBarTheme: const AppBarTheme(
     color: Color(0xFF075E54), // AppBar background color
     iconTheme: IconThemeData(color: Colors.white), // AppBar icons color
@@ -172,9 +176,7 @@ final ThemeData lightTheme = ThemeData(
     backgroundColor: Color(0xFF25D366), // WhatsApp green for FAB
   ),
   textTheme: const TextTheme(
-    displaySmall: TextStyle(
-      color: Colors.greenAccent
-    ),
+    displaySmall: TextStyle(color: Colors.greenAccent),
     displayLarge: TextStyle(
       color: Colors.white,
     ),
@@ -214,8 +216,9 @@ final ThemeData darkTheme = ThemeData(
     displayMedium: TextStyle(
       color: Color.fromARGB(255, 35, 68, 65),
     ),
-      displaySmall: TextStyle(
-          color:Color.fromARGB(255, 35, 68, 65),),
+    displaySmall: TextStyle(
+      color: Color.fromARGB(255, 35, 68, 65),
+    ),
     bodyLarge: TextStyle(
         color: Color.fromARGB(
             255, 250, 250, 250)), // Primary text color in dark mode

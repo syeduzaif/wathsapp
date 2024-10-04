@@ -28,7 +28,7 @@ class _CallerPageState extends State<CallerPage> {
             Navigator.pop(context);
           },
         ),
-        title: Text(
+        title: const Text(
           "Call Info",
           style: TextStyle(color: Colors.white, fontSize: 22),
         ),

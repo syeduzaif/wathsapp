@@ -6,6 +6,8 @@ import 'package:wathsapp_ui_2/Chat_model/funtions/status_view.dart';
 import 'dart:io'; // For using the File class
 
 class StatusPage extends StatefulWidget {
+  const StatusPage({super.key});
+
   @override
   _StatusPageState createState() => _StatusPageState();
 }

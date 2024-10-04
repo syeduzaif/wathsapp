@@ -92,7 +92,7 @@ class CommunityData {
 }
 
 class Community extends StatefulWidget {
-  const Community({Key? key}) : super(key: key);
+  const Community({super.key});
 
   @override
   State<Community> createState() => _CommunityState();
@@ -188,7 +188,7 @@ class _CommunityState extends State<Community> {
 class CommunityDetailPage extends StatelessWidget {
   final CommunityModel model;
 
-  const CommunityDetailPage({Key? key, required this.model}) : super(key: key);
+  const CommunityDetailPage({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -324,7 +324,7 @@ class CommunityDetailPage extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Container(
+              SizedBox(
                 width: 333,
                 child: Text(
                   message,
@@ -354,7 +354,7 @@ class CommunityDetailPage extends StatelessWidget {
 }
 
 class FirstCommunityPage extends StatelessWidget {
-  const FirstCommunityPage({Key? key}) : super(key: key);
+  const FirstCommunityPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -370,10 +370,10 @@ class FirstCommunityPage extends StatelessWidget {
           children: [
             Column(
               children: [
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 Image.asset("images/wathapp.jpeg"),
-                InkWell(
-                  child: const Text("See example Communities",
+                const InkWell(
+                  child: Text("See example Communities",
                       style: TextStyle(color: Colors.blue)),
                 ),
               ],
